@@ -396,11 +396,13 @@ function buildLocation(){
 
 const container=document.getElementById('mapWrap');
   if(typeof kakao!=='undefined'){
-    try{
-      const coords=new kakao.maps.LatLng(v.lat,v.lng);
-      const map=new kakao.maps.Map(container,{center:coords,level:3});
-      const marker=new kakao.maps.Marker({position:coords,map});
-    }catch(e){}
+    kakao.maps.load(function(){
+      try{
+        const coords=new kakao.maps.LatLng(v.lat,v.lng);
+        const map=new kakao.maps.Map(container,{center:coords,level:3});
+        const marker=new kakao.maps.Marker({position:coords,map});
+      }catch(e){}
+    });
   }
 
   const list=document.getElementById('trList');
